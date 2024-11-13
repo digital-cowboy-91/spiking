@@ -70,8 +70,8 @@ function PushNotificationManager() {
   }
 
   return (
-    <div>
-      <h3>Push Notifications</h3>
+    <div className="m-auto max-w-[700px] block">
+      <h3 className="font-bold text-2xl">Push Notifications</h3>
       {subscription ? (
         <>
           <p>You are subscribed to push notifications.</p>
@@ -109,8 +109,8 @@ function InstallPrompt() {
   }
 
   return (
-    <div>
-      <h3>Install App</h3>
+    <div className="m-auto max-w-[700px] block">
+      <h3 className="font-bold text-2xl">Install App</h3>
       <button>Add to Home Screen</button>
       {isIOS && (
         <p>
