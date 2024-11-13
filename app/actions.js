@@ -3,7 +3,7 @@
 import webpush from "web-push";
 
 webpush.setVapidDetails(
-  "<mailto:dave.kolaja@gmail.com>",
+  "mailto:dave.kolaja@gmail.com>=",
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
@@ -11,10 +11,15 @@ webpush.setVapidDetails(
 let subscription = null;
 
 export async function subscribeUser(sub) {
-  subscription = sub;
+  try {
+    subscription = JSON.parse(sub);
+
+    return { success: true };
+  } catch (e) {
+    console.error(e);
+  }
   // In a production environment, you would want to store the subscription in a database
   // For example: await db.subscriptions.create({ data: sub })
-  return { success: true };
 }
 
 export async function unsubscribeUser() {
@@ -35,7 +40,7 @@ export async function sendNotification(message) {
       JSON.stringify({
         title: "Test Notification",
         body: message,
-        icon: "/icon.png",
+        icon: "/Test_128.svg",
       })
     );
     return { success: true };
