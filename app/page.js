@@ -59,7 +59,8 @@ function PushNotificationManager() {
 
   async function sendTestNotification() {
     if (subscription) {
-      await sendNotification(message);
+      console.log(message);
+      await sendNotification(JSON.stringify(message));
       setMessage("");
     }
   }
