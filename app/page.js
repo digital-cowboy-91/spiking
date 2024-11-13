@@ -70,7 +70,7 @@ function PushNotificationManager() {
   }
 
   return (
-    <div className="m-auto max-w-[700px] block">
+    <div className="m-auto max-w-[700px] flex flex-row">
       <h3 className="font-bold text-2xl">Push Notifications</h3>
       {subscription ? (
         <>
