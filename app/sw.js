@@ -1,4 +1,15 @@
-self.addEventListener("push", function (event) {
+import { defaultCache } from "@serwist/next/worker";
+import { Serwist } from "serwist";
+
+const serwist = new Serwist({
+  precacheEntries: self.__SW_MANIFEST,
+  skipWaiting: true,
+  clientsClaim: true,
+  navigationPreload: true,
+  runtimeCaching: defaultCache,
+});
+
+serwist.addEventListeners("push", function (event) {
   if (event.data) {
     const data = event.data.json();
     const options = {
@@ -15,7 +26,7 @@ self.addEventListener("push", function (event) {
   }
 });
 
-self.addEventListener("notificationclick", function (event) {
+serwist.addEventListener("notificationclick", function (event) {
   console.log("Notification click received.");
   event.notification.close();
   event.waitUntil(clients.openWindow("https://spiking.colaia.dev"));
