@@ -1,4 +1,4 @@
-const { default: Dexie } = require("dexie");
+import Dexie from "dexie";
 
 export const dexieInstance = new Dexie("test_db");
 
