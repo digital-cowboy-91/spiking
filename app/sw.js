@@ -1,5 +1,10 @@
 import { defaultCache } from "@serwist/next/worker";
-import { enableNavigationPreload, Serwist } from "serwist";
+import {
+  enableNavigationPreload,
+  Serwist,
+  NavigationRoute,
+  NetworkFirst,
+} from "serwist";
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,

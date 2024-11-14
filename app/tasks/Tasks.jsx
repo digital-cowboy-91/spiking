@@ -2,23 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import { dexieInstance } from "../dexieInstance";
+import { useLiveQuery } from "dexie-react-hooks";
 
 const Tasks = () => {
-  const [data, setData] = useState([]);
+  const liveData = useLiveQuery(async () => {
+    return await dexieInstance.tasks.toArray();
+  });
 
   useEffect(() => {
-    dexieInstance.tasks.toArray().then((res) => setData(res));
-  }, []);
+    console.log(liveData);
+  }, [liveData]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  if (!data.length) return;
+  if (!liveData?.length) return;
 
   return (
     <ul>
-      {data.map(({ id, description, status }) => (
+      {liveData.map(({ id, description, status }) => (
         <li key={id}>
           {description} - {status}
         </li>
