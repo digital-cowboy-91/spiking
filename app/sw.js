@@ -1,5 +1,5 @@
 import { defaultCache } from "@serwist/next/worker";
-import { Serwist } from "serwist";
+import { enableNavigationPreload, Serwist } from "serwist";
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
@@ -33,3 +33,18 @@ self.addEventListener("notificationclick", function (event) {
 });
 
 serwist.addEventListeners();
+
+enableNavigationPreload();
+
+const navigationStrategy = new NetworkFirst({
+  cacheName: "cached-navigations",
+});
+
+const navigationRoute = new NavigationRoute(navigationStrategy, {
+  // Optionally, provide a allow/denylist of RegExps to determine
+  // which paths will match this route.
+  // allowlist: [],
+  // denylist: [],
+});
+
+serwist.registerRoute(navigationRoute);
