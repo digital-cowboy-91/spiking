@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { subscribeUser, unsubscribeUser, sendNotification } from "./actions";
+import Link from "next/link";
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -69,7 +70,7 @@ function PushNotificationManager() {
   }
 
   return (
-    <div className="m-auto max-w-[700px] flex flex-col items-start gap-2">
+    <>
       <h3 className="font-bold text-2xl">Push Notifications</h3>
       {subscription ? (
         <>
@@ -104,7 +105,7 @@ function PushNotificationManager() {
           </button>
         </>
       )}
-    </div>
+    </>
   );
 }
 
@@ -123,7 +124,7 @@ function InstallPrompt() {
   }
 
   return (
-    <div className="m-auto max-w-[700px] flex flex-col items-start gap-2">
+    <>
       <h3 className="font-bold text-2xl">Install App</h3>
       <button>Add to Home Screen</button>
       {isIOS && (
@@ -141,15 +142,21 @@ function InstallPrompt() {
           .
         </p>
       )}
-    </div>
+    </>
   );
 }
 
 export default function Page() {
   return (
-    <div>
+    <div className="m-auto max-w-[700px] flex flex-col items-start gap-2">
       <PushNotificationManager />
       <InstallPrompt />
+      <Link
+        href="/tasks"
+        className="px-2 py-1 bg-orange-500 sm:rounded-full md:rounded-lg hover:scale-[1.05] transition-all font-bold text-white"
+      >
+        Go To Tasks
+      </Link>
     </div>
   );
 }
