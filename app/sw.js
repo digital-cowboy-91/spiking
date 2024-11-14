@@ -11,7 +11,12 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    {
+      matcher: ({ url }) => url.pathname.startsWith("/"),
+      handler: new NetworkFirst(),
+    },
+  ],
 });
 
 self.addEventListener("push", function (event) {
