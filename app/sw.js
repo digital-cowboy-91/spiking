@@ -39,17 +39,17 @@ self.addEventListener("notificationclick", function (event) {
 
 serwist.addEventListeners();
 
-enableNavigationPreload();
+// enableNavigationPreload();
 
-const navigationStrategy = new NetworkFirst({
-  cacheName: "cached-navigations",
-});
+// const navigationStrategy = new NetworkFirst({
+//   cacheName: "cached-navigations",
+// });
 
-const navigationRoute = new NavigationRoute(navigationStrategy, {
-  // Optionally, provide a allow/denylist of RegExps to determine
-  // which paths will match this route.
-  // allowlist: [],
-  // denylist: [],
-});
+// const navigationRoute = new NavigationRoute(navigationStrategy, {
+//   // Optionally, provide a allow/denylist of RegExps to determine
+//   // which paths will match this route.
+//   // allowlist: [],
+//   // denylist: [],
+// });
 
-serwist.registerRoute(navigationRoute);
+// serwist.registerRoute(navigationRoute);
