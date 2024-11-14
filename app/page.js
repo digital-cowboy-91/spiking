@@ -74,19 +74,34 @@ function PushNotificationManager() {
       {subscription ? (
         <>
           <p>You are subscribed to push notifications.</p>
-          <button onClick={unsubscribeFromPush}>Unsubscribe</button>
+          <button
+            className="px-2 py-1 bg-orange-500 sm:rounded-full md:rounded-lg hover:scale-[1.05] transition-all font-bold text-white"
+            onClick={unsubscribeFromPush}
+          >
+            Unsubscribe
+          </button>
           <input
             type="text"
             placeholder="Enter notification message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button onClick={sendTestNotification}>Send Test</button>
+          <button
+            className="px-2 py-1 bg-orange-500 sm:rounded-full md:rounded-lg hover:scale-[1.05] transition-all font-bold text-white"
+            onClick={sendTestNotification}
+          >
+            Send Test
+          </button>
         </>
       ) : (
         <>
           <p>You are not subscribed to push notifications.</p>
-          <button onClick={subscribeToPush}>Subscribe</button>
+          <button
+            className="px-2 py-1 bg-orange-500 sm:rounded-full md:rounded-lg hover:scale-[1.05] transition-all font-bold text-white"
+            onClick={subscribeToPush}
+          >
+            Subscribe
+          </button>
         </>
       )}
     </div>
