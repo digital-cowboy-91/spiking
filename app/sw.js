@@ -9,7 +9,7 @@ const serwist = new Serwist({
   runtimeCaching: defaultCache,
 });
 
-serwist.addEventListeners("push", function (event) {
+self.addEventListener("push", function (event) {
   if (event.data) {
     const data = event.data.json();
     const options = {
@@ -26,8 +26,10 @@ serwist.addEventListeners("push", function (event) {
   }
 });
 
-serwist.addEventListener("notificationclick", function (event) {
+self.addEventListener("notificationclick", function (event) {
   console.log("Notification click received.");
   event.notification.close();
   event.waitUntil(clients.openWindow("https://spiking.colaia.dev"));
 });
+
+serwist.addEventListeners();
