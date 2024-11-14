@@ -3,7 +3,7 @@
 import webpush from "web-push";
 
 webpush.setVapidDetails(
-  "mailto:dave.kolaja@gmail.com>=",
+  "mailto:dave.kolaja@gmail.com",
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
@@ -30,19 +30,19 @@ export async function unsubscribeUser() {
 }
 
 export async function sendNotification(message) {
+  const msg = JSON.stringify({
+    title: "Test Notification",
+    body: message,
+    icon: "/Test_128.svg",
+  });
+
+  console.log({ subscription, msg });
   if (!subscription) {
     throw new Error("No subscription available");
   }
 
   try {
-    await webpush.sendNotification(
-      subscription,
-      JSON.stringify({
-        title: "Test Notification",
-        body: message,
-        icon: "/Test_128.svg",
-      })
-    );
+    await webpush.sendNotification(subscription, msg);
     return { success: true };
   } catch (error) {
     console.error("Error sending push notification:", error);
